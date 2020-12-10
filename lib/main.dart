@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:rock_wheter/core/navigation/navigation_config.dart';
-import 'package:rock_wheter/features/home/view/home.dart';
+import 'package:rock_weather/core/navigation/navigation_config.dart';
+import 'package:rock_weather/features/home/view/home.dart';
 
 void main() {
   runApp(MyApp());

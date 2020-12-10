@@ -1,4 +1,4 @@
-# rock_wheter
+# rock_weather
 
 This whether will rock
 

@@ -1,4 +1,4 @@
-package app.rock_wheter
+package app.rock_weather
 
 import io.flutter.embedding.android.FlutterActivity
 
