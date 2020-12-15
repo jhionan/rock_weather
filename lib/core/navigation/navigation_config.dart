@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rock_weather/features/home/view/home.dart';
+
+import 'package:rock_weather/features/tour_home/view/tour_provider.dart';
+
 import 'package:rock_weather/features/weather_detail/view/weather_detail.dart';
+import 'package:rock_weather/features/weather_detail/view/weather_detail_provider.dart';
 
 class AppRoutes {
   static const String home = '/';
@@ -12,19 +15,19 @@ class AppRoutes {
       case home:
         page = BlocProvider(
           create: (context) => null,
-          child: Home(),
+          child: TourProvider(),
         );
         break;
       case detail:
         page = BlocProvider(
           create: (context) => null,
-          child: WeatherDetail(),
+          child: WeatherDetailProvider(selectedCity: settings.arguments,),
         );
         break;
       default:
         page = BlocProvider(
           create: (context) => null,
-          child: Home(),
+          child: TourProvider(),
         );
         break;
     }
