@@ -1,0 +1,5 @@
+{
+    "base": "http://api.openweathermap.org/data/{version}/",
+    "version": "2.5",
+    "appid": "931d1353b69a1ab6acb49332e80e9353"
+}
