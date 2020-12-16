@@ -15,7 +15,6 @@ class TourHome extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: BlocBuilder<TourBloc, TourState>(
-              buildWhen: (old, next) => true,
               builder: (context, state) {
                 List<TourModel> citiesWeather;
                 if (state is TourFetched) {

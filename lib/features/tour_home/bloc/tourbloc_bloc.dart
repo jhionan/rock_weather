@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
 import 'package:rock_weather/features/tour_home/data/tour_datasouce.dart';
 import 'package:rock_weather/features/tour_home/data/tour_model.dart';
@@ -39,8 +40,8 @@ class TourBloc extends Bloc<TourEvent, TourState> {
       case FetchTour:
         yield TourFetched(citiesWeather: (event as FetchTour).citiesWeather);
         break;
-      case ErrorTour: 
-      yield TourErrorState((state as ErrorTour).message);
+      case ErrorTour:  
+      yield TourErrorState((event as ErrorTour).message);
       break;
     }
   }
@@ -54,7 +55,7 @@ class TourBloc extends Bloc<TourEvent, TourState> {
       _dataSource.searchCit(event.query).listen((event) {
         _lastFetchedWeather.add(event);
         add(FetchTour(citiesWeather: [event]));
-      }, onError: onError);
+      }, onError: _onError);
       return;
     }
     add(FetchTour(citiesWeather: filteredList));
@@ -64,12 +65,13 @@ class TourBloc extends Bloc<TourEvent, TourState> {
     _dataSource.fetchCurrentTime().listen((event) {
       _lastFetchedWeather.addAll(event);
       add(FetchTour(citiesWeather: _lastFetchedWeather.toList()));
-    },onError: onError);
+    },onError: _onError);
   }
 
-  @override
-  void onError(Object error, StackTrace stackTrace) {
-    add(ErrorTour(error.toString()));
-    super.onError(error, stackTrace);
+  
+  void _onError(Object error, StackTrace stackTrace) {
+    if(error is DioError) {
+      add(ErrorTour(error?.message.toString()));
+    }
   }
 }
