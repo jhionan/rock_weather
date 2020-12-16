@@ -11,3 +11,9 @@ class TourFetched extends TourState {
     this.citiesWeather = const [],
   });
 }
+
+class TourErrorState extends TourState {
+  final String message;
+
+  TourErrorState(this.message);
+}

@@ -58,10 +58,19 @@ class TourHome extends StatelessWidget {
                       ),
                     if (citiesWeather != null && citiesWeather.isEmpty)
                       Center(child: Text('Não encontramos esta cidade')),
-                    if (citiesWeather == null)
+                    if (citiesWeather == null && state is! TourErrorState)
                       Expanded(
                         child: Center(
                           child: CircularProgressIndicator(),
+                        ),
+                      ),
+                    if (state is TourErrorState)
+                      Expanded(
+                        child: Center(
+                          child: Text(
+                            'Opps! ${state.message}',
+                            style: TextStyle(color: Colors.red, fontSize: 20),
+                          ),
                         ),
                       ),
                   ],

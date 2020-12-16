@@ -39,6 +39,9 @@ class TourBloc extends Bloc<TourEvent, TourState> {
       case FetchTour:
         yield TourFetched(citiesWeather: (event as FetchTour).citiesWeather);
         break;
+      case ErrorTour: 
+      yield TourErrorState((state as ErrorTour).message);
+      break;
     }
   }
 
@@ -51,7 +54,7 @@ class TourBloc extends Bloc<TourEvent, TourState> {
       _dataSource.searchCit(event.query).listen((event) {
         _lastFetchedWeather.add(event);
         add(FetchTour(citiesWeather: [event]));
-      });
+      }, onError: onError);
       return;
     }
     add(FetchTour(citiesWeather: filteredList));
@@ -61,6 +64,12 @@ class TourBloc extends Bloc<TourEvent, TourState> {
     _dataSource.fetchCurrentTime().listen((event) {
       _lastFetchedWeather.addAll(event);
       add(FetchTour(citiesWeather: _lastFetchedWeather.toList()));
-    });
+    },onError: onError);
+  }
+
+  @override
+  void onError(Object error, StackTrace stackTrace) {
+    add(ErrorTour(error.toString()));
+    super.onError(error, stackTrace);
   }
 }

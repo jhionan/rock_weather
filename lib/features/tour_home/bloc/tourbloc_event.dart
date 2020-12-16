@@ -16,3 +16,9 @@ class FetchTour extends TourEvent {
     this.citiesWeather = const [],
   });
 }
+
+class ErrorTour extends TourEvent {
+  final String message;
+
+  ErrorTour(this.message);
+}
