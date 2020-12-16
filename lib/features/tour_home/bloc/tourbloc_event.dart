@@ -4,7 +4,10 @@ part of 'tourbloc_bloc.dart';
 abstract class TourEvent {}
 
 class SearchTour extends TourEvent {
-  String query;
+  final String query;
+  final bool submitted;
+
+  SearchTour(this.query, [this.submitted = false]);
 }
 
 class FetchTour extends TourEvent {

@@ -16,6 +16,18 @@ class TourDataSource {
 
   TourDataSource(this._api);
 
+  Stream<TourModel> searchCit(String city) async* {
+    yield* _api.getCurrentWeather(city).map((apiModel) => 
+        TourModel(
+          id: apiModel?.id?? '',
+          city: apiModel?.name ?? '',
+          feelLike: apiModel?.main?.feelsLike ?? 0.0,
+          temperature: apiModel?.main?.temp ?? 0.0,
+          description: apiModel?.weather?.elementAt(0)?.description ?? ''
+        ),);
+  }
+
+
   Stream<List<TourModel>> fetchCurrentTime() async* {
     yield* CombineLatestStream.list(
         citiesTour.map((city) => _api.getCurrentWeather(city))).map(

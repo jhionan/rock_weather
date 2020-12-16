@@ -12,6 +12,9 @@ class TourBloc extends Bloc<TourEvent, TourState> {
   TourBloc(this._dataSource) : super(TourInitial()) {
     _init();
   }
+
+  Set<TourModel> _lastFetchedWeather = Set();
+
   @override
   Future<void> close() async {
     _dataSource.dispose();
@@ -39,11 +42,25 @@ class TourBloc extends Bloc<TourEvent, TourState> {
     }
   }
 
-  _search(TourEvent event) {}
+  _search(SearchTour event) {
+    List<TourModel> filteredList = _lastFetchedWeather
+        .where((tourModel) => 
+        tourModel.city.toLowerCase().contains(event.query.toLowerCase()))
+        .toList();
+    if (filteredList.isEmpty && event.submitted && event.query.length > 3) {
+      _dataSource.searchCit(event.query).listen((event) {
+        _lastFetchedWeather.add(event);
+        add(FetchTour(citiesWeather: [event]));
+      });
+      return;
+    }
+    add(FetchTour(citiesWeather: filteredList));
+  }
 
   _init() {
     _dataSource.fetchCurrentTime().listen((event) {
-      add(FetchTour(citiesWeather: event));
+      _lastFetchedWeather.addAll(event);
+      add(FetchTour(citiesWeather: _lastFetchedWeather.toList()));
     });
   }
 }

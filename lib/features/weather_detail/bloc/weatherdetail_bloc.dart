@@ -21,8 +21,8 @@ class WeatherDetailBloc extends Bloc<WeatherDetailEvent, WeatherDetailState> {
     WeatherDetailEvent event,
   ) async* {
     switch (event.runtimeType) {
-      case FetchCityForecast:
-        FetchCityForecast currentEvent = event;
+      case FetchCityWeatherDetail:
+        FetchCityWeatherDetail currentEvent = event;
         yield WeatherDetailFetched(
             cityWeather: currentEvent.cityWeather,
             forecast: currentEvent.forecast);
@@ -32,7 +32,7 @@ class WeatherDetailBloc extends Bloc<WeatherDetailEvent, WeatherDetailState> {
 
   void _fetchForecast(TourModel selectedCity) {
     _dataSource.getForecastForQuery(selectedCity.city).listen((event) {
-     add(FetchCityForecast(cityWeather: selectedCity, forecast: event));
+     add(FetchCityWeatherDetail(cityWeather: selectedCity, forecast: event));
     });
   }
 }

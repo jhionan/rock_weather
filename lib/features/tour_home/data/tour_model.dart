@@ -11,4 +11,21 @@ class TourModel {
     this.description,
     this.id,
   });
+
+  
+
+  @override
+  bool operator ==(Object o) {
+    if (identical(this, o)) return true;
+  
+    return o is TourModel &&
+      o.city == city &&
+      o.id == id;
+  }
+
+  @override
+  int get hashCode {
+    return city.hashCode ^
+      id.hashCode;
+  }
 }
