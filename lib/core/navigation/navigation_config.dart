@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:rock_weather/features/tour_home/view/tour_provider.dart';
-
-import 'package:rock_weather/features/weather_detail/view/weather_detail.dart';
 import 'package:rock_weather/features/weather_detail/view/weather_detail_provider.dart';
 
 class AppRoutes {
@@ -21,7 +18,9 @@ class AppRoutes {
       case detail:
         page = BlocProvider(
           create: (context) => null,
-          child: WeatherDetailProvider(selectedCity: settings.arguments,),
+          child: WeatherDetailProvider(
+            selectedCity: settings.arguments,
+          ),
         );
         break;
       default:
