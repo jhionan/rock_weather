@@ -5,12 +5,13 @@ class TourItem extends StatelessWidget {
   final TourModel cityWeather;
   final Color color;
   final bool now;
+  final double height;
 
-  const TourItem({Key key, this.cityWeather, this.color = Colors.white, this.now = false}) : super(key: key);
+  const TourItem({Key key, this.cityWeather, this.color = Colors.white, this.now = false, this.height = 150.0}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 150,
+        height: height,
         width: 250,
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
         decoration: BoxDecoration(

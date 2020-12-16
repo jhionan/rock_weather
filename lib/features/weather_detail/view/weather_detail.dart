@@ -13,10 +13,11 @@ class WeatherDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blueGrey,
       appBar: AppBar(),
       body: Container(
         margin: EdgeInsets.all(24),
-        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 0),
         decoration: BoxDecoration(
             color: Colors.white, borderRadius: BorderRadius.circular(24)),
         child: BlocBuilder<WeatherDetailBloc, WeatherDetailState>(
@@ -36,13 +37,14 @@ class WeatherDetail extends StatelessWidget {
               children: [
                 if (tourModel != null)
                   TourItem(
+
                     now: true,
                     cityWeather: tourModel,
                   ),
                 if (tourWeatherForecast != null)
                   Expanded(
                       child: ListWheelScrollView(
-                    itemExtent: 200,
+                    itemExtent: 140,
                     diameterRatio: 5,
 offAxisFraction: 5.6,
                     children: tourWeatherForecast.dayForecast

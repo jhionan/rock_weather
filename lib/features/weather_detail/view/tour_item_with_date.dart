@@ -11,7 +11,8 @@ class TourItemWithDate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 180,
+      margin: EdgeInsets.symmetric(horizontal: 16),
+      height: 110,
         width: 250,
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
         decoration: BoxDecoration(
@@ -22,6 +23,7 @@ class TourItemWithDate extends StatelessWidget {
           Text('Dia: ${tourForecastDay.dateTime.toHumanDate()}'),
           TourItem(
             color: Colors.grey.shade300,
+            height: 90,
             cityWeather: TourModel(
                 city: '',
                 description: tourForecastDay.description,
