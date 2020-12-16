@@ -4,7 +4,9 @@ class TourModel {
   final double feelLike;
   final String description;
   final int id;
+  final String country;
   TourModel({
+    this.country,
     this.city,
     this.temperature,
     this.feelLike,
@@ -12,20 +14,15 @@ class TourModel {
     this.id,
   });
 
-  
-
   @override
   bool operator ==(Object o) {
     if (identical(this, o)) return true;
-  
-    return o is TourModel &&
-      o.city == city &&
-      o.id == id;
+
+    return o is TourModel && o.city == city && o.id == id && o.country == country;
   }
 
   @override
   int get hashCode {
-    return city.hashCode ^
-      id.hashCode;
+    return city.hashCode ^ id.hashCode ^country.hashCode;
   }
 }

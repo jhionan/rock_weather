@@ -73,5 +73,6 @@ class TourBloc extends Bloc<TourEvent, TourState> {
     if(error is DioError) {
       add(ErrorTour(error?.message.toString()));
     }
+    add(ErrorTour(error?.toString()));
   }
 }

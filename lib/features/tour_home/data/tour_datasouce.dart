@@ -9,9 +9,9 @@ class TourDataSource {
 
   List<String> citiesTour = [
     'Silverstone, UK',
-    'São Paulo, Brazil',
-    'Melbourne, Australia',
-    'Monte Carlo, Monaco'
+    'São Paulo, BR',
+    'Melbourne, AU',
+    'Monte Carlo, MC'
   ];
 
   TourDataSource(this._api);
@@ -23,7 +23,8 @@ class TourDataSource {
           city: apiModel?.name ?? '',
           feelLike: apiModel?.main?.feelsLike ?? 0.0,
           temperature: apiModel?.main?.temp ?? 0.0,
-          description: apiModel?.weather?.elementAt(0)?.description ?? ''
+          description: apiModel?.weather?.elementAt(0)?.description ?? '',
+          country: apiModel.sys.country
         ),);
   }
 
@@ -39,7 +40,8 @@ class TourDataSource {
           city: apiModel?.name ?? '',
           feelLike: apiModel?.main?.feelsLike ?? 0.0,
           temperature: apiModel?.main?.temp ?? 0.0,
-          description: apiModel?.weather?.elementAt(0)?.description ?? ''
+          description: apiModel?.weather?.elementAt(0)?.description ?? '',
+          country: apiModel?.sys?.country
         ),
       )?.toList(),
     );

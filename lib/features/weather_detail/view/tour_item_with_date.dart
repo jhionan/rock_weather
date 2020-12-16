@@ -26,6 +26,7 @@ class TourItemWithDate extends StatelessWidget {
             height: 90,
             cityWeather: TourModel(
                 city: '',
+                country: '',
                 description: tourForecastDay.description,
                 temperature: tourForecastDay.temperature),
           )

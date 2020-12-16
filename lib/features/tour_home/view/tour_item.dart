@@ -37,7 +37,7 @@ class TourItem extends StatelessWidget {
             ),
             Flexible(
                 child: Text(
-              cityWeather.city,
+              cityWeather.city + ' ${cityWeather.country}',
               style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
             )),
             Flexible(child: Text(cityWeather.description))

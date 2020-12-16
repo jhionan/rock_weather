@@ -258,30 +258,26 @@ class Rain {
 
 class Sys {
     Sys({
-        this.pod,
+        this.country,
     });
 
-    final Pod pod;
+    final String country;
 
-    factory Sys.fromJson(Map<String,Object> str) => Sys.fromMap(str);
+    factory Sys.fromJson(String str) => Sys.fromMap(json.decode(str));
 
     String toJson() => json.encode(toMap());
 
     factory Sys.fromMap(Map<String, dynamic> json) => Sys(
-        pod: podValues.map[json["pod"]],
+        country: json["country"],
     );
 
     Map<String, dynamic> toMap() => {
-        "pod": podValues.reverse[pod],
+        "country": country,
     };
 }
 
-enum Pod { D, N }
 
-final podValues = EnumValues({
-    "d": Pod.D,
-    "n": Pod.N
-});
+
 
 class Weather {
     Weather({
