@@ -9,5 +9,3 @@ class FetchCityWeatherDetail extends WeatherDetailEvent {
 
   FetchCityWeatherDetail({this.cityWeather, this.forecast});
 }
-
-

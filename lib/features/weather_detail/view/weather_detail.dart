@@ -37,7 +37,6 @@ class WeatherDetail extends StatelessWidget {
               children: [
                 if (tourModel != null)
                   TourItem(
-
                     now: true,
                     cityWeather: tourModel,
                   ),
@@ -46,7 +45,7 @@ class WeatherDetail extends StatelessWidget {
                       child: ListWheelScrollView(
                     itemExtent: 140,
                     diameterRatio: 5,
-offAxisFraction: 5.6,
+                    offAxisFraction: 5.6,
                     children: tourWeatherForecast.dayForecast
                         .map((dayForecast) => TourItemWithDate(
                               tourForecastDay: dayForecast,

@@ -18,11 +18,14 @@ class TourModel {
   bool operator ==(Object o) {
     if (identical(this, o)) return true;
 
-    return o is TourModel && o.city == city && o.id == id && o.country == country;
+    return o is TourModel &&
+        o.city == city &&
+        o.id == id &&
+        o.country == country;
   }
 
   @override
   int get hashCode {
-    return city.hashCode ^ id.hashCode ^country.hashCode;
+    return city.hashCode ^ id.hashCode ^ country.hashCode;
   }
 }

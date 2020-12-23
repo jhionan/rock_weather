@@ -7,7 +7,13 @@ class TourItem extends StatelessWidget {
   final bool now;
   final double height;
 
-  const TourItem({Key key, this.cityWeather, this.color = Colors.white, this.now = false, this.height = 150.0}) : super(key: key);
+  const TourItem(
+      {Key key,
+      this.cityWeather,
+      this.color = Colors.white,
+      this.now = false,
+      this.height = 150.0})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -20,8 +26,8 @@ class TourItem extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            if(now)
-            Align(
+            if (now)
+              Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
                   'Agora:',

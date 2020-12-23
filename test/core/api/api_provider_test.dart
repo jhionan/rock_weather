@@ -18,8 +18,8 @@ main() {
         ApiConfigModel.fromJson(jsonDecode(apiConfigJson)),
         isA<ApiConfigModel>()
             .having((apiConfig) => apiConfig.version, 'version is 2.5', '2.5')
-            .having(
-                (apiConfig) => apiConfig.base, 'base have version in it', 'http://api.openweathermap.org/data/2.5/'));
+            .having((apiConfig) => apiConfig.base, 'base have version in it',
+                'http://api.openweathermap.org/data/2.5/'));
   });
   testWidgets('create ApiConfig from json asset', (tester) async {
     final container = ProviderContainer();

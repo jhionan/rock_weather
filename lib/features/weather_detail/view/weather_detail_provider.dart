@@ -19,7 +19,9 @@ class WeatherDetailProvider extends StatelessWidget {
       create: (context) {
         ApiFactoryDelegate apiFactoryDelegate =
             () => ProviderContainer().read(apiProvider.future);
-        return WeatherDetailBloc(WeatherDetailDataSource(WeatherDetailApiImp(apiFactoryDelegate)), selectedCity: selectedCity);
+        return WeatherDetailBloc(
+            WeatherDetailDataSource(WeatherDetailApiImp(apiFactoryDelegate)),
+            selectedCity: selectedCity);
       },
       child: WeatherDetail(),
     );

@@ -18,7 +18,6 @@ class TourProvider extends StatelessWidget {
         return TourBloc(TourDataSource(TourApiImp(apiFactoryDelegate)));
       },
       child: TourHome(),
-      
     );
   }
 }

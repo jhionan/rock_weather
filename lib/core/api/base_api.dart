@@ -10,7 +10,9 @@ class BaseApi {
   BaseApi(this._apiconfig) {
     _dio = Dio();
     _dio.options.baseUrl = _apiconfig.base;
-    _dio.interceptors.add(DioCacheManager(CacheConfig(baseUrl: _apiconfig.base,)).interceptor);
+    _dio.interceptors.add(DioCacheManager(CacheConfig(
+      baseUrl: _apiconfig.base,
+    )).interceptor);
     _dio.interceptors.add(PrettyDioLogger());
     ready.add(true);
   }

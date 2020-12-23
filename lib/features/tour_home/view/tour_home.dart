@@ -14,67 +14,65 @@ class TourHome extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16),
-          child: BlocBuilder<TourBloc, TourState>(
-              builder: (context, state) {
-                List<TourModel> citiesWeather;
-                if (state is TourFetched) {
-                  citiesWeather = state.citiesWeather;
-                }
-                return Column(
-                  children: [
-                    SearchComponent(
-                      onChanged: (query) {
-                        context.read<TourBloc>().add(SearchTour(query));
-                      },
-                      onSubmitted: (query) {
-                        context.read<TourBloc>().add(SearchTour(query, true));
-                      },
-                    ),
-                    SizedBox(
-                      height: 16,
-                    ),
-                    if (citiesWeather != null)
-                      Expanded(
-                        child: ListView.separated(
-                          itemCount: citiesWeather.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return GestureDetector(
-                              onTap: () {
-                                Navigator.of(context).pushNamed(
-                                    AppRoutes.detail,
-                                    arguments: citiesWeather[index]);
-                              },
-                              child: TourItem(
-                                cityWeather: citiesWeather[index],
-                              ),
-                            );
+          child: BlocBuilder<TourBloc, TourState>(builder: (context, state) {
+            List<TourModel> citiesWeather;
+            if (state is TourFetched) {
+              citiesWeather = state.citiesWeather;
+            }
+            return Column(
+              children: [
+                SearchComponent(
+                  onChanged: (query) {
+                    context.read<TourBloc>().add(SearchTour(query));
+                  },
+                  onSubmitted: (query) {
+                    context.read<TourBloc>().add(SearchTour(query, true));
+                  },
+                ),
+                SizedBox(
+                  height: 16,
+                ),
+                if (citiesWeather != null)
+                  Expanded(
+                    child: ListView.separated(
+                      itemCount: citiesWeather.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).pushNamed(AppRoutes.detail,
+                                arguments: citiesWeather[index]);
                           },
-                          separatorBuilder: (BuildContext context, int index) =>
-                              SizedBox(
-                            height: 4,
+                          child: TourItem(
+                            cityWeather: citiesWeather[index],
                           ),
-                        ),
+                        );
+                      },
+                      separatorBuilder: (BuildContext context, int index) =>
+                          SizedBox(
+                        height: 4,
                       ),
-                    if (citiesWeather != null && citiesWeather.isEmpty)
-                      Center(child: Text('Não encontramos esta cidade')),
-                    if (citiesWeather == null && state is! TourErrorState)
-                      Expanded(
-                        child: Center(
-                          child: CircularProgressIndicator(),
-                        ),
+                    ),
+                  ),
+                if (citiesWeather != null && citiesWeather.isEmpty)
+                  Center(child: Text('Não encontramos esta cidade')),
+                if (citiesWeather == null && state is! TourErrorState)
+                  Expanded(
+                    child: Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  ),
+                if (state is TourErrorState)
+                  Expanded(
+                    child: Center(
+                      child: Text(
+                        'Opps! ${state.message}',
+                        style: TextStyle(color: Colors.red, fontSize: 20),
                       ),
-                    if (state is TourErrorState)
-                      Expanded(
-                        child: Center(
-                          child: Text(
-                            'Opps! ${state.message}',
-                            style: TextStyle(color: Colors.red, fontSize: 20),
-                          ),
-                        ),
-                      ),
-                  ],
-                );
-              }),
+                    ),
+                  ),
+              ],
+            );
+          }),
         ),
       ),
     );

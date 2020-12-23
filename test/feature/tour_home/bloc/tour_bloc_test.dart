@@ -29,7 +29,8 @@ main() {
           isA<TourFetched>().having(
               (tourFetched) => tourFetched.citiesWeather.first,
               'Have one element on list',
-              isA<TourModel>().having((tour) => tour.country, 'Country is BR', 'BR')),
+              isA<TourModel>()
+                  .having((tour) => tour.country, 'Country is BR', 'BR')),
         ));
   });
 }

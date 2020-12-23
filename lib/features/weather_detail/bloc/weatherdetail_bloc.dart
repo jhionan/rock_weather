@@ -32,7 +32,7 @@ class WeatherDetailBloc extends Bloc<WeatherDetailEvent, WeatherDetailState> {
 
   void _fetchForecast(TourModel selectedCity) {
     _dataSource.getForecastForQuery(selectedCity.city).listen((event) {
-     add(FetchCityWeatherDetail(cityWeather: selectedCity, forecast: event));
+      add(FetchCityWeatherDetail(cityWeather: selectedCity, forecast: event));
     });
   }
 }

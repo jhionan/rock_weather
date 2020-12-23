@@ -9,11 +9,13 @@ class TourWeatherForecast {
 }
 
 const int unixToMilliSinceEpoch = 1000;
+
 class TourForecastDay {
   final String description;
   final DateTime dateTime;
   final double temperature;
 
   TourForecastDay({this.description, int dateTime, this.temperature})
-      : this.dateTime = DateTime.fromMillisecondsSinceEpoch(dateTime*unixToMilliSinceEpoch);
+      : this.dateTime = DateTime.fromMillisecondsSinceEpoch(
+            dateTime * unixToMilliSinceEpoch);
 }

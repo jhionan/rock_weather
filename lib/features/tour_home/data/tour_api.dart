@@ -24,6 +24,6 @@ class TourApiImp implements TourApi {
         }
         throw response.data;
       }
-    }).where((event) => event!=null);
+    }).where((event) => event != null);
   }
 }

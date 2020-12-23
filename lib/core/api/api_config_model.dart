@@ -7,7 +7,8 @@ class ApiConfigModel {
   final String key;
 
   ApiConfigModel.fromJson(Map<String, Object> json)
-      : base = '${json[baseKey]}'.replaceFirst('{$versionKey}', json[versionKey]),
+      : base =
+            '${json[baseKey]}'.replaceFirst('{$versionKey}', json[versionKey]),
         version = json[versionKey],
         key = json[apiKeyKey];
 }

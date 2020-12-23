@@ -40,16 +40,16 @@ class TourBloc extends Bloc<TourEvent, TourState> {
       case FetchTour:
         yield TourFetched(citiesWeather: (event as FetchTour).citiesWeather);
         break;
-      case ErrorTour:  
-      yield TourErrorState((event as ErrorTour).message);
-      break;
+      case ErrorTour:
+        yield TourErrorState((event as ErrorTour).message);
+        break;
     }
   }
 
   _search(SearchTour event) {
     List<TourModel> filteredList = _lastFetchedWeather
-        .where((tourModel) => 
-        tourModel.city.toLowerCase().contains(event.query.toLowerCase()))
+        .where((tourModel) =>
+            tourModel.city.toLowerCase().contains(event.query.toLowerCase()))
         .toList();
     if (filteredList.isEmpty && event.submitted && event.query.length > 3) {
       _dataSource.searchCit(event.query).listen((event) {
@@ -65,12 +65,11 @@ class TourBloc extends Bloc<TourEvent, TourState> {
     _dataSource.fetchCurrentTime().listen((event) {
       _lastFetchedWeather.addAll(event);
       add(FetchTour(citiesWeather: _lastFetchedWeather.toList()));
-    },onError: _onError);
+    }, onError: _onError);
   }
 
-  
   void _onError(Object error, StackTrace stackTrace) {
-    if(error is DioError) {
+    if (error is DioError) {
       add(ErrorTour(error?.message.toString()));
     }
     add(ErrorTour(error?.toString()));

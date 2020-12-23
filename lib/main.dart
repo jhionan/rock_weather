@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rock_weather/core/navigation/navigation_config.dart';
 
-
 void main() {
   runApp(MyApp());
 }

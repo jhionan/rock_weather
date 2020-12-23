@@ -13,10 +13,10 @@ class TourItemWithDate extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 16),
       height: 110,
-        width: 250,
-        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-        decoration: BoxDecoration(
-            color: Colors.grey.shade300, borderRadius: BorderRadius.circular(24)),
+      width: 250,
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+      decoration: BoxDecoration(
+          color: Colors.grey.shade300, borderRadius: BorderRadius.circular(24)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
