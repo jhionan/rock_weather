@@ -35,6 +35,4 @@ main() {
         isA<BaseApi>().having((baseApi) => baseApi.instance,
             'Instance of dio must not be null', isNotNull));
   });
-
-  
 }
