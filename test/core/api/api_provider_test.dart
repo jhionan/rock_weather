@@ -28,14 +28,13 @@ main() {
         config,
         isA<ApiConfigModel>()
             .having((config) => config.version, 'config version = 2.5', '2.5'));
-  });
 
-  testWidgets('create BaseApi', (tester) async {
-    final container = ProviderContainer();
     BaseApi _api = await container.read(apiProvider.future);
     expect(
         _api,
         isA<BaseApi>().having((baseApi) => baseApi.instance,
             'Instance of dio must not be null', isNotNull));
   });
+
+  
 }
